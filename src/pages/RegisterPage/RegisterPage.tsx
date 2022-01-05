@@ -21,6 +21,7 @@ const registerSchema = Yup.object({
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+
   return (
     <div className={classes.registerContainer}>
       <Formik
@@ -80,7 +81,7 @@ export default function RegisterPage() {
                 component={TextField}
               />
               <div className={classes.buttons}>
-                <BasicButton theme="primary" type="submit">
+                <BasicButton disabled={!isValid} theme="primary" type="submit">
                   Register
                 </BasicButton>
                 <BasicButton theme="secondary" type="reset">

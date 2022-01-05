@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  opacity: 0.5;
+}
+
 .primary {
   background-color: #0275d8;
   color: white;
