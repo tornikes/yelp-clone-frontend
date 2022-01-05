@@ -60,7 +60,7 @@ export default function RegisterPage() {
                 component={TextField}
               />
               <Field
-                label="Confirm passord"
+                label="Confirm password"
                 placeholder="confirm password"
                 name="confirmPassword"
                 type="password"
