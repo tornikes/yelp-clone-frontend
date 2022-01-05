@@ -38,7 +38,7 @@ export default function RegisterPage() {
           );
           if (response.status === 201) {
             resetForm();
-            navigate("/places");
+            navigate("/login");
           }
         }}
         validationSchema={registerSchema}
