@@ -1,0 +1,16 @@
+.formField {
+  margin-bottom: 10px;
+}
+
+.fieldLabel {
+  margin-bottom: 5px;
+  display: block;
+  font-size: 18px;
+  padding-left: 3px;
+}
+
+.fieldInput {
+  display: block;
+  width: 100%;
+  padding: 5px;
+}

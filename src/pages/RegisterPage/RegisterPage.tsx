@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from "formik";
 import { TextField } from "../../components/FormField/FormField";
 import * as Yup from "yup";
+import classes from "./RegisterPage.module.css";
+import BasicButton from "../../components/BasicButton/BasicButton";
 
 const registerSchema = Yup.object({
   userName: Yup.string().required("Username is required").min(3).max(50),
@@ -17,7 +19,7 @@ const registerSchema = Yup.object({
 
 export default function RegisterPage() {
   return (
-    <div>
+    <div className={classes.registerContainer}>
       <Formik
         initialValues={{
           userName: "",
@@ -38,7 +40,7 @@ export default function RegisterPage() {
       >
         {({ isValid }) => {
           return (
-            <Form>
+            <Form className={classes.form}>
               <Field
                 label="User name"
                 placeholder="username"
@@ -67,10 +69,14 @@ export default function RegisterPage() {
                 value=""
                 component={TextField}
               />
-              <button disabled={!isValid} type="submit">
-                Register
-              </button>
-              <button type="reset">Clear</button>
+              <div className={classes.buttons}>
+                <BasicButton theme="primary" type="submit">
+                  Register
+                </BasicButton>
+                <BasicButton theme="secondary" type="reset">
+                  Reset
+                </BasicButton>
+              </div>
             </Form>
           );
         }}

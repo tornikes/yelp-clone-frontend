@@ -1,4 +1,5 @@
 import { FieldProps, Field, ErrorMessage } from "formik";
+import classes from "./FormField.module.css";
 
 interface TextProps extends FieldProps {
   label: string;
@@ -12,9 +13,14 @@ export const TextField: React.FC<TextProps> = ({
   placeholder,
   type = "text",
 }) => (
-  <div>
-    <label>{label}</label>
-    <Field type={type} placeholder={placeholder} {...field} />
+  <div className={classes.formField}>
+    <label className={classes.fieldLabel}>{label}</label>
+    <Field
+      className={classes.fieldInput}
+      type={type}
+      placeholder={placeholder}
+      {...field}
+    />
     <div style={{ color: "red" }}>
       <ErrorMessage name={field.name} />
     </div>
