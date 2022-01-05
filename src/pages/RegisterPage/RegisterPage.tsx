@@ -1,8 +1,10 @@
 import { Formik, Form, Field } from "formik";
 import { TextField } from "../../components/FormField/FormField";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import classes from "./RegisterPage.module.css";
 import BasicButton from "../../components/BasicButton/BasicButton";
+import axios from "axios";
 
 const registerSchema = Yup.object({
   userName: Yup.string().required("Username is required").min(3).max(50),
@@ -18,6 +20,7 @@ const registerSchema = Yup.object({
 });
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   return (
     <div className={classes.registerContainer}>
       <Formik
@@ -27,8 +30,15 @@ export default function RegisterPage() {
           password: "",
           confirmPassword: "",
         }}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values, { resetForm }) => {
+          const response = await axios.post(
+            "http://localhost:5000/api/auth/register",
+            values
+          );
+          if (response.status === 201) {
+            resetForm();
+            navigate("/places");
+          }
         }}
         validationSchema={registerSchema}
         validate={({ confirmPassword }) => {
