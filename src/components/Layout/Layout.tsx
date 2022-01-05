@@ -9,9 +9,7 @@ export default function Layout({ children }: PropsWithChildren<{}>) {
         This is a header component
         <Link to="/register">Register</Link>
       </header>{" "}
-      <div className={classes.layoutContainer}>
-        This is a layout component: children are {children}
-      </div>
+      <div className={classes.layoutContainer}>{children}</div>
       <footer className={classes.footer}>Copyright 2020 © Yelp-ish</footer>
     </div>
   );
