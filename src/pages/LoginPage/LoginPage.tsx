@@ -3,6 +3,8 @@ import BasicButton from "../../components/BasicButton/BasicButton";
 import { TextField } from "../../components/FormField/FormField";
 import classes from "./LoginPage.module.css";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useApiContext } from "../../components/ApiContext/ApiContext";
 
 const loginSchema = Yup.object({
   email: Yup.string().email().required("Email is required"),
@@ -10,11 +12,18 @@ const loginSchema = Yup.object({
 });
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const { logIn } = useApiContext();
   return (
     <div className={classes.loginContainer}>
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={async (values) => {
+          try {
+            await logIn(values);
+            navigate("/places");
+          } catch (err) {}
+        }}
         validationSchema={loginSchema}
       >
         {({ isValid }) => {
