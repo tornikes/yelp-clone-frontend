@@ -1,0 +1,35 @@
+.displayContainer {
+  min-height: 85vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: red;
+}
+
+.restaurantGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.paginationContainer {
+  display: flex;
+  margin-top: auto;
+  bottom: 10px;
+  /* position: absolute;
+  left: 50%;
+  transform: translateX(-50%); */
+}
+
+.pageIndicator {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.activePage {
+  border: 1px solid black;
+}

@@ -16,6 +16,8 @@ interface LoginCredentials {
 
 interface ApiContextType {
   logIn(credentials: LoginCredentials): Promise<void>;
+  restaurantCount(): Promise<number>;
+  fetchRestaurantsPage(page: number): Promise<Object[]>;
   isLoggedIn: boolean;
   logout(): void;
 }
@@ -64,8 +66,37 @@ export default function ApiContextProvider({
     }
   }
 
+  async function restaurantCount() {
+    const response = await axios.get<{ count: number }>(
+      `${baseUrl}/restaurant/count`
+    );
+
+    return response.data.count;
+  }
+
+  async function fetchRestaurantsPage(page: number) {
+    const response = await axios.get<{ restaurants: Object[] }>(
+      `${baseUrl}/restaurant`,
+      {
+        params: {
+          page,
+        },
+      }
+    );
+
+    return response.data.restaurants;
+  }
+
   return (
-    <ApiContext.Provider value={{ isLoggedIn, logout, logIn }}>
+    <ApiContext.Provider
+      value={{
+        isLoggedIn,
+        logout,
+        logIn,
+        restaurantCount,
+        fetchRestaurantsPage,
+      }}
+    >
       {children}
     </ApiContext.Provider>
   );
