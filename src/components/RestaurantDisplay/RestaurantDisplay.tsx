@@ -19,7 +19,7 @@ export default function RestaurantDisplay() {
       }
       setTotalPages(pages);
     })();
-  }, [restaurantCount, page, totalPages, setPage]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { data, isLoading } = useQuery(
     ["restaurants", page],
@@ -36,8 +36,8 @@ export default function RestaurantDisplay() {
       Here we display restaurants You are on page <strong>{page}</strong>
       data! {data?.length}
       <div className={classes.restaurantGrid}>
-        {data?.map((item: any) => (
-          <p key={item.name}>{item.name}</p>
+        {data?.map((item) => (
+          <p key={item.id}>{item.name}</p>
         ))}
       </div>
       <ReactPaginate
@@ -46,6 +46,7 @@ export default function RestaurantDisplay() {
         previousClassName={classes.pageIndicator}
         nextClassName={classes.pageIndicator}
         activeClassName={classes.activePage}
+        disabledClassName={classes.disabled}
         pageCount={totalPages}
         onPageChange={({ selected }) => {
           setPage(selected + 1);
