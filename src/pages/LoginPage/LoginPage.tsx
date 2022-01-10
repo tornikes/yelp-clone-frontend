@@ -45,7 +45,7 @@ export default function LoginPage() {
               />
               <div className={classes.buttons}>
                 <BasicButton disabled={!isValid} theme="primary" type="submit">
-                  Register
+                  Sign in
                 </BasicButton>
                 <BasicButton theme="secondary" type="reset">
                   Reset
