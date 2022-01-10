@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mainHeading {
+  font-size: 24px;
+  margin: 20px 0px;
+  font-weight: bold;
+}
+
+.mainImage {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.datesAndLocation {
+  display: flex;
+}
+.datesAndLocation p {
+  margin-right: 10px;
+  font-size: 18px;
+  padding: 5px 0;
+}
+.datesAndLocation p:last-of-type {
+  margin-left: auto;
+  margin-right: 0;
+}
+.detailedDesc {
+  padding: 10px 0;
+}

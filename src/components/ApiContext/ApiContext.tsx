@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import axios from "axios";
-import { RestaurantPreview } from "../../types";
+import { RestaurantDetails, RestaurantPreview } from "../../types";
 const baseUrl = "http://localhost:5000/api";
 
 interface LoginCredentials {
@@ -19,6 +19,7 @@ interface ApiContextType {
   logIn(credentials: LoginCredentials): Promise<void>;
   restaurantCount(): Promise<number>;
   fetchRestaurantsPage(page: number): Promise<RestaurantPreview[]>;
+  fetchRestaurant(id: string): Promise<RestaurantDetails>;
   isLoggedIn: boolean;
   logout(): void;
 }
@@ -88,6 +89,14 @@ export default function ApiContextProvider({
     return response.data.restaurants;
   }
 
+  async function fetchRestaurant(id: string) {
+    const response = await axios.get<{ restaurant: RestaurantDetails }>(
+      `${baseUrl}/restaurant/place/` + id
+    );
+
+    return response.data.restaurant;
+  }
+
   return (
     <ApiContext.Provider
       value={{
@@ -96,6 +105,7 @@ export default function ApiContextProvider({
         logIn,
         restaurantCount,
         fetchRestaurantsPage,
+        fetchRestaurant,
       }}
     >
       {children}

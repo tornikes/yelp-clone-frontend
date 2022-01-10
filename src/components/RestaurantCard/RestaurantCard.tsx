@@ -34,7 +34,7 @@ export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
       <h3>{restaurant.name}</h3>
       <div>
         <p>{restaurant.description.slice(0, 250)}...</p>
-        <Link to="/places">read more</Link>
+        <Link to={`/places/${restaurant.id}`}>read more</Link>
       </div>
     </div>
   );

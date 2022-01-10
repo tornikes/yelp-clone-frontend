@@ -5,3 +5,10 @@ export interface RestaurantPreview {
   description: string;
   rating: number | null;
 }
+
+export interface RestaurantDetails extends RestaurantPreview {
+  location: string;
+  createdAt: Date;
+  lastRatedAt: Date | null;
+  ratingCount: number;
+}

@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,14 @@ function App() {
               element={
                 <Layout>
                   <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/places/:id"
+              element={
+                <Layout>
+                  <RestaurantPage />
                 </Layout>
               }
             />
