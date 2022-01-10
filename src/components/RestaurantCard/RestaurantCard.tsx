@@ -10,7 +10,7 @@ interface RestaurantCardProps {
 export default function RestaurantCard({ restaurant }: RestaurantCardProps) {
   let { rating } = restaurant;
   if (rating === null) {
-    rating = 3.5;
+    rating = 0;
   }
   rating *= 20;
 
