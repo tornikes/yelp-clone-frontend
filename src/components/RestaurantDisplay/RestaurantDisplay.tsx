@@ -4,6 +4,7 @@ import usePageQuery from "../../hooks/usePageQuery";
 import { useApiContext } from "../ApiContext/ApiContext";
 import { useQuery } from "react-query";
 import classes from "./RestaurantDisplay.module.css";
+import RestaurantCard from "../RestaurantCard/RestaurantCard";
 
 export default function RestaurantDisplay() {
   const { page, setPage } = usePageQuery();
@@ -33,11 +34,9 @@ export default function RestaurantDisplay() {
 
   return (
     <div className={classes.displayContainer}>
-      Here we display restaurants You are on page <strong>{page}</strong>
-      data! {data?.length}
       <div className={classes.restaurantGrid}>
         {data?.map((item) => (
-          <p key={item.id}>{item.name}</p>
+          <RestaurantCard key={item.id} restaurant={item} />
         ))}
       </div>
       <ReactPaginate

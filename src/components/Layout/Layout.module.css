@@ -1,17 +1,17 @@
 .layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
 }
 
 .layoutContainer {
   max-width: 1440px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .footer {
   margin: 0 auto;
-  margin-top: 50px;
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: auto;
 }

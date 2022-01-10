@@ -3,7 +3,6 @@ import RestaurantDisplay from "../../components/RestaurantDisplay/RestaurantDisp
 export default function HomePage() {
   return (
     <div>
-      Restaurants
       <RestaurantDisplay />
     </div>
   );

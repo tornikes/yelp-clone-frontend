@@ -5,20 +5,20 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 20px;
 }
 
 .restaurantGrid {
   display: grid;
+  gap: 20px;
   grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 30px;
 }
 
 .paginationContainer {
   display: flex;
   margin-top: auto;
   bottom: 10px;
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
 }
 
 .pageIndicator {
