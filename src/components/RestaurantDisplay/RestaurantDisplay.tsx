@@ -5,6 +5,8 @@ import { useApiContext } from "../ApiContext/ApiContext";
 import { useQuery } from "react-query";
 import classes from "./RestaurantDisplay.module.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
+import Paginage from "../Paginate/Paginate";
+import Paginate from "../Paginate/Paginate";
 
 export default function RestaurantDisplay() {
   const { page, setPage } = usePageQuery();
@@ -39,18 +41,7 @@ export default function RestaurantDisplay() {
           <RestaurantCard key={item.id} restaurant={item} />
         ))}
       </div>
-      <ReactPaginate
-        containerClassName={classes.paginationContainer}
-        pageClassName={classes.pageIndicator}
-        previousClassName={classes.pageIndicator}
-        nextClassName={classes.pageIndicator}
-        activeClassName={classes.activePage}
-        disabledClassName={classes.disabled}
-        pageCount={totalPages}
-        onPageChange={({ selected }) => {
-          setPage(selected + 1);
-        }}
-      />
+      <Paginate totalPages={totalPages} setPage={setPage} />
     </div>
   );
 }

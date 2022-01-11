@@ -2,11 +2,12 @@ import { useQuery } from "react-query";
 import { useParams, Navigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { useApiContext } from "../../components/ApiContext/ApiContext";
+import RestaurantReviews from "../../components/Reviews/Reviews";
 import classes from "./RestaurantPage.module.css";
 
 export default function RestaurantPage() {
   const { id } = useParams();
-  const { fetchRestaurant } = useApiContext();
+  const { fetchRestaurant, reviewCount, fetchReviewsPage } = useApiContext();
   const { data, isError, isLoading } = useQuery(["restaurant", id], () =>
     fetchRestaurant(id!)
   );
@@ -44,6 +45,11 @@ export default function RestaurantPage() {
         <p>{data?.location}</p>
       </div>
       <p className={classes.detailedDesc}>{data?.description}</p>
+      <RestaurantReviews
+        id={id!}
+        countFetcher={reviewCount}
+        pageFetcher={fetchReviewsPage}
+      />
     </div>
   );
 }

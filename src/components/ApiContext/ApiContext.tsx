@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import axios from "axios";
-import { RestaurantDetails, RestaurantPreview } from "../../types";
+import { RestaurantDetails, RestaurantPreview, Review } from "../../types";
 const baseUrl = "http://localhost:5000/api";
 
 interface LoginCredentials {
@@ -20,6 +20,8 @@ interface ApiContextType {
   restaurantCount(): Promise<number>;
   fetchRestaurantsPage(page: number): Promise<RestaurantPreview[]>;
   fetchRestaurant(id: string): Promise<RestaurantDetails>;
+  fetchReviewsPage(id: string, page: number): Promise<Review[]>;
+  reviewCount(id: string): Promise<number>;
   isLoggedIn: boolean;
   logout(): void;
 }
@@ -76,6 +78,14 @@ export default function ApiContextProvider({
     return response.data.count;
   }
 
+  async function reviewCount(id: string) {
+    const response = await axios.get<{ count: number }>(
+      `${baseUrl}/restaurant/place/${id}/reviews/count`
+    );
+
+    return response.data.count;
+  }
+
   async function fetchRestaurantsPage(page: number) {
     const response = await axios.get<{ restaurants: RestaurantPreview[] }>(
       `${baseUrl}/restaurant`,
@@ -87,6 +97,19 @@ export default function ApiContextProvider({
     );
 
     return response.data.restaurants;
+  }
+
+  async function fetchReviewsPage(id: string, page: number) {
+    const response = await axios.get<{ reviews: Review[] }>(
+      `${baseUrl}/restaurant/place/${id}/reviews`,
+      {
+        params: {
+          page,
+        },
+      }
+    );
+
+    return response.data.reviews;
   }
 
   async function fetchRestaurant(id: string) {
@@ -106,6 +129,8 @@ export default function ApiContextProvider({
         restaurantCount,
         fetchRestaurantsPage,
         fetchRestaurant,
+        reviewCount,
+        fetchReviewsPage,
       }}
     >
       {children}

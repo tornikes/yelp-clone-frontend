@@ -1,0 +1,20 @@
+.paginationContainer {
+  display: flex;
+  margin-top: auto;
+  bottom: 10px;
+}
+
+.pageIndicator {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.activePage {
+  border: 1px solid black;
+}
+.disabled {
+  opacity: 0.7;
+}

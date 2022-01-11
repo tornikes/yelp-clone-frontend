@@ -12,3 +12,10 @@ export interface RestaurantDetails extends RestaurantPreview {
   lastRatedAt: Date | null;
   ratingCount: number;
 }
+
+export interface Review {
+  id: string;
+  rating: number;
+  reviewContents: string;
+  createdAt: Date;
+}
