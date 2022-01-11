@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
 import usePageQuery from "../../hooks/usePageQuery";
 import { useApiContext } from "../ApiContext/ApiContext";
 import { useQuery } from "react-query";
 import classes from "./RestaurantDisplay.module.css";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
-import Paginage from "../Paginate/Paginate";
 import Paginate from "../Paginate/Paginate";
 
 export default function RestaurantDisplay() {
@@ -16,7 +14,7 @@ export default function RestaurantDisplay() {
   useEffect(() => {
     (async () => {
       const count = await restaurantCount();
-      const pages = Math.ceil(count / 9);
+      const pages = Math.round(count / 9) + 1;
       if (page > pages) {
         setPage(1);
       }

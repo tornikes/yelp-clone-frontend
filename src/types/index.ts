@@ -18,4 +18,9 @@ export interface Review {
   rating: number;
   reviewContents: string;
   createdAt: Date;
+  user: {
+    id: string;
+    userName: string;
+    email: string;
+  };
 }

@@ -1,0 +1,13 @@
+.review {
+  margin-bottom: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header > * + * {
+  margin-left: 15px;
+}

@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { Navigate } from "react-router-dom";
 import { Review } from "../../types";
 import Paginate from "../Paginate/Paginate";
+import ReviewItem from "../Review/Review";
 
 interface ReviewsProps {
   id: string;
@@ -25,8 +26,7 @@ export default function RestaurantReviews({
   useEffect(() => {
     (async () => {
       const count = await countFetcher(id);
-      console.log(`COUNT IS ${count}`);
-      const pages = Math.ceil(count / 5);
+      const pages = Math.round(count / 5) + 1;
       setTotalPages(pages);
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -39,7 +39,7 @@ export default function RestaurantReviews({
     <div>
       <div>
         {data?.map((item) => (
-          <p>{item.reviewContents}</p>
+          <ReviewItem key={item.id} review={item} />
         ))}
       </div>
       <Paginate totalPages={totalPages} setPage={setPage} />
