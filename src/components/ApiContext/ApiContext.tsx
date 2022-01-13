@@ -15,12 +15,28 @@ interface LoginCredentials {
   password: string;
 }
 
+interface ReviewShape {
+  rating: number;
+  id: string;
+  reviewContents: string;
+  createdAt: Date;
+}
+
+interface ReviewResponse {
+  review: ReviewShape;
+}
+
 interface ApiContextType {
   logIn(credentials: LoginCredentials): Promise<void>;
   restaurantCount(): Promise<number>;
   fetchRestaurantsPage(page: number): Promise<RestaurantPreview[]>;
   fetchRestaurant(id: string): Promise<RestaurantDetails>;
   fetchReviewsPage(id: string, page: number): Promise<Review[]>;
+  createReview(
+    restaurantId: string,
+    rating: number,
+    reviewContents: string
+  ): Promise<ReviewShape>;
   reviewCount(id: string): Promise<number>;
   isLoggedIn: boolean;
   logout(): void;
@@ -120,6 +136,28 @@ export default function ApiContextProvider({
     return response.data.restaurant;
   }
 
+  async function createReview(
+    restaurantId: string,
+    rating: number,
+    reviewContents: string
+  ): Promise<ReviewShape> {
+    const response = await axios.post<ReviewResponse>(
+      `${baseUrl}/review`,
+      {
+        rating,
+        restaurantId,
+        reviewContents,
+      },
+      {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    return response.data.review;
+  }
+
   return (
     <ApiContext.Provider
       value={{
@@ -131,6 +169,7 @@ export default function ApiContextProvider({
         fetchRestaurant,
         reviewCount,
         fetchReviewsPage,
+        createReview,
       }}
     >
       {children}
