@@ -1,0 +1,19 @@
+.formContainer {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.textarea {
+  min-height: 200px;
+  resize: none;
+}
+
+.submitButton {
+  margin-right: 10px;
+}
