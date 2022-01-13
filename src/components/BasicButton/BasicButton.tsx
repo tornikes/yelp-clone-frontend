@@ -11,8 +11,8 @@ interface ButtonProps
 export default function BasicButton(props: ButtonProps) {
   return (
     <button
-      className={`${classes.button} ${classes[props.theme]}`}
       {...props}
+      className={`${classes.button} ${classes[props.theme]} ${props.className}`}
     />
   );
 }
