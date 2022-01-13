@@ -58,7 +58,10 @@ export default function RestaurantPage() {
           </BasicButton>
         )}
         {showReviewForm && (
-          <ReviewForm onClose={() => setShowReviewForm(false)} />
+          <ReviewForm
+            restaurantId={id!}
+            onClose={() => setShowReviewForm(false)}
+          />
         )}
         <RestaurantReviews
           id={id!}

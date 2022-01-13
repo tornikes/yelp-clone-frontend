@@ -1,22 +1,30 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import { useApiContext } from "../ApiContext/ApiContext";
 import BasicButton from "../BasicButton/BasicButton";
 import classes from "./ReviewForm.module.css";
 
 interface ReviewFormProps {
+  restaurantId: string;
   onClose(): void;
 }
 
-export default function ReviewForm({ onClose }: ReviewFormProps) {
+export default function ReviewForm({ onClose, restaurantId }: ReviewFormProps) {
   const [rating, setRating] = useState(2.5);
   const [text, setText] = useState("");
   const [showWarning, setShowWarning] = useState(false);
+  const { createReview } = useApiContext();
 
   const textLength = 50;
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (text.length >= textLength) {
-      console.log({ rating, text });
+      try {
+        await createReview(restaurantId, rating, text);
+        onClose();
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       setShowWarning(true);
     }
