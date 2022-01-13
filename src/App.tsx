@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,14 @@ function App() {
                   <NotLoggedIn>
                     <LoginPage />
                   </NotLoggedIn>
+                </Layout>
+              }
+            />
+            <Route
+              path="/profile/:id"
+              element={
+                <Layout>
+                  <UserPage />
                 </Layout>
               }
             />
